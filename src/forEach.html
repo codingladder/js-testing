@@ -3,9 +3,14 @@
 
 <script>
 /// code to be tested:
-function forEach(arr, callback) {
-  for (let i = 0; i < arr.length; i++) {
-  	callback(arr[i], i, arr);
+function forEach(array, callback, optionalThisObject) {
+	let forEachCallback = callback;
+
+	if(optionalThisObject) {
+		forEachCallback = callback.bind(optionalThisObject);
+	}
+  for (let i = 0; i < array.length; i++) {
+  	forEachCallback(array[i], i, array);
   }
 }
 
@@ -34,6 +39,11 @@ tests({
 		forEach(testArray, function(number, index, originalArray) {
 			eq(originalArray, testArray);
 		});
+	}, 
+	'Should accept an optional this object ': function() {
+		forEach([1], function() {
+			eq(this.description, 'I should be accessible inside of the callback.');
+		}, {description: 'I should be accessible inside of the callback.'});
 	}
 });
 </script>
