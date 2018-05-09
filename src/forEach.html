@@ -5,10 +5,9 @@
 /// code to be tested:
 function forEach(arr, callback) {
   for (let i = 0; i < arr.length; i++) {
-  	callback(arr[i]);
+  	callback(arr[i], i, arr);
   }
 }
-
 
 // Tests:
 tests({
@@ -23,6 +22,17 @@ tests({
 		let arr = [1];
 		forEach([1], function(num) {
        eq(num, 1);
+		});
+	}, 
+	'Should pass in ith position as second arg to the callback ': function() {
+		forEach([1], function(num, index) {
+       eq(index, 0);
+		});
+	}, 
+	'Should pass in original array as 3rd arg to the callback. ': function() {
+		var testArray = [1, 2, 3];
+		forEach(testArray, function(number, index, originalArray) {
+			eq(originalArray, testArray);
 		});
 	}
 });
