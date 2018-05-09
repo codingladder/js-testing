@@ -5,7 +5,7 @@
 /// code to be tested:
 function forEach(arr, callback) {
   for (let i = 0; i < arr.length; i++) {
-  	callback();
+  	callback(arr[i]);
   }
 }
 
@@ -18,6 +18,12 @@ tests({
 			counter++;
 		});
 		eq(counter, 3);
+	}, 
+	'Should pass in ith element to 1st arg to the callback: ': function() {
+		let arr = [1];
+		forEach([1], function(num) {
+       eq(num, 1);
+		});
 	}
 });
 </script>
