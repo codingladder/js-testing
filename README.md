@@ -1,4 +1,4 @@
-# testing JavaScript with jstinytest
+# testing JavaScript using jstinytest
 
 1. clone repo
 2. place code to test and tests in html (js-testing/src/folder)
