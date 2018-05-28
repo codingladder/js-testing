@@ -1,0 +1,22 @@
+<script src="../jstinytest/tinytest.js"></script>
+<h1>testing..</h1>
+
+<script>
+/// code to be tested:
+function every(arr) {
+	count = 0;
+	for (let i = 0; i < arr.length; i++) {
+  	count++;
+  }
+  return count;
+}
+
+// Tests:
+tests({
+	'Should iterate thru length of array': function() {
+		let arr = [1, 2, 3];
+		let count = every(arr);
+    eq(count, arr.length);
+	}
+});
+</script>
