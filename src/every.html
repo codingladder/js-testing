@@ -17,15 +17,11 @@ console.log(array1.every(isBelowThreshold));  // true
 <h1>testing..</h1>
 
 <script>
-// example to check if a value is below 40
-function isBelow40(value) {
-  return value < 40;
-}
 
 /// code to be tested:
 function every(arr, callback) {
 	if (!Array.isArray(arr))
-		return false
+		return -1;
 	count = 0;
 	for (let i = 0; i < arr.length; i++) {
   	callback();
@@ -35,25 +31,46 @@ function every(arr, callback) {
 // Tests:
 tests({
 	'Should return false if array is NOT passed, passing string': function() {
-    eq(every("temp string"), false);
+    eq(every("temp string"), -1);
 	},
 	'Should return false if array is NOT passed, passing object literal': function() {
 		let person = {
 			name: "John",
-			age: "21",
-		  greet: function() {
-		  	console.log("Hi. My name is: " + this.name + '!');
-		  }
+			age: 21,
 		}
-    eq(every(person), false);
+    eq(every(person), -1);
 	},
   'Should iterate thru length of array': function() {
-		let arr = [1, 2, 3];
+		let arr = [3, 7, 8, 4];
 		count = 0;
 		every(arr, function() {
 			count++;
 		});
     eq(count, arr.length);
+	},
+	'when passing an empty array, [] should return true by default': function() {
+		let arr = [];
+		myBool = true;
+		every(arr, function(val) {
+			for (let i=0; i<arr.length; i++) {
+				// check if number is NOT less than 40
+				if (!(arr[i] < 40))
+					myBool = false;
+			}
+		});
+		eq(myBool, true);
+	},
+	'when checking a function if every number in array are below 40, [1, 50, 4] should return false': function() {
+		let arr = [1, 50, 4];
+		myBool = true;
+		every(arr, function(val) {
+			for (let i=0; i<arr.length; i++) {
+				// check if number is NOT less than 40
+				if (!(arr[i] < 40))
+					myBool = false;
+			}
+		});
+		eq(myBool, false);
 	}
 });
 </script>
