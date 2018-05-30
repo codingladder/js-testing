@@ -24,7 +24,7 @@ function isBelow40(value) {
 
 /// code to be tested:
 function every(arr, callback) {
-	if (typeof arr === 'string' || typeof arr === 'number')
+	if (!Array.isArray(arr))
 		return false
 	count = 0;
 	for (let i = 0; i < arr.length; i++) {
@@ -34,11 +34,18 @@ function every(arr, callback) {
 
 // Tests:
 tests({
-	'Should return false if string is passed': function() {
+	'Should return false if array is NOT passed, passing string': function() {
     eq(every("temp string"), false);
 	},
-	'Should return false if number is passed': function() {
-    eq(every(2), false);
+	'Should return false if array is NOT passed, passing object literal': function() {
+		let person = {
+			name: "John",
+			age: "21",
+		  greet: function() {
+		  	console.log("Hi. My name is: " + this.name + '!');
+		  }
+		}
+    eq(every(person), false);
 	},
   'Should iterate thru length of array': function() {
 		let arr = [1, 2, 3];
