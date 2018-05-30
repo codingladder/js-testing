@@ -24,6 +24,8 @@ function isBelow40(value) {
 
 /// code to be tested:
 function every(arr, callback) {
+	if (typeof arr === 'string')
+		return false
 	count = 0;
 	for (let i = 0; i < arr.length; i++) {
   	callback();
@@ -32,13 +34,8 @@ function every(arr, callback) {
 
 // Tests:
 tests({
-	'Should iterate thru length of array': function() {
-		let arr = [1, 2, 3];
-		count = 0;
-		every(arr, function() {
-			count++;
-		});
-    eq(count, arr.length);
+	'Should return false if string is passed': function() {
+    eq(every("temp string"), false);
 	},
   'Should iterate thru length of array': function() {
 		let arr = [1, 2, 3];
