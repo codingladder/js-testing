@@ -1,7 +1,27 @@
+<!--
+Array.prototype.every()
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
+
+Example:
+
+function isBelowThreshold(currentValue) {
+  return currentValue < 40;
+}
+
+var array1 = [1, 30, 39, 29, 10, 13];
+
+console.log(array1.every(isBelowThreshold));  // true
+-->
+
 <script src="../jstinytest/tinytest.js"></script>
 <h1>testing..</h1>
 
 <script>
+// example to check if a value is below 40
+function isBelow40(value) {
+  return value < 40;
+}
+
 /// code to be tested:
 function every(arr, callback) {
 	count = 0;
@@ -13,6 +33,14 @@ function every(arr, callback) {
 // Tests:
 tests({
 	'Should iterate thru length of array': function() {
+		let arr = [1, 2, 3];
+		count = 0;
+		every(arr, function() {
+			count++;
+		});
+    eq(count, arr.length);
+	},
+  'Should iterate thru length of array': function() {
 		let arr = [1, 2, 3];
 		count = 0;
 		every(arr, function() {
