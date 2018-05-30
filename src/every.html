@@ -73,7 +73,7 @@ tests({
 		eq(myBool, false);
 	}, 
 	'when checking a function if every number in array are below 40, [70, 50, 4] should return false': function() {
-		let arr = [1, 50, 4];
+		let arr = [70, 50, 4];
 		myBool = true;
 		every(arr, function(val) {
 			for (let i=0; i<arr.length; i++) {
@@ -83,6 +83,18 @@ tests({
 			}
 		});
 		eq(myBool, false);
+	}, 
+	'when checking a function if every number in array are below 40, [30, 21, 4] should return false': function() {
+		let arr = [30, 21, 4];
+		myBool = true;
+		every(arr, function(val) {
+			for (let i=0; i<arr.length; i++) {
+				// check if number is NOT less than 40
+				if (!(arr[i] < 40))
+					myBool = false;
+			}
+		});
+		eq(myBool, true);
 	}
 });
 </script>
