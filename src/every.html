@@ -1,4 +1,12 @@
 <!--
+
+This every function is meant to be a type of every as described below in
+the mdn documentation
+
+*Note*
+There are differences and purpose of this exercise is for testing, 
+documentation and javascript method familiarity
+
 Array.prototype.every()
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
 
@@ -14,9 +22,11 @@ console.log(array1.every(isBelowThreshold));  // true
 -->
 
 <script src="../jstinytest/tinytest.js"></script>
-<h1>testing..</h1>
+<h1>Testing..</h1>
 
 <script>
+
+// function used to test
 
 /// code to be tested:
 function every(arr, callback) {
@@ -48,6 +58,24 @@ tests({
 		});
     eq(count, arr.length);
 	},
+
+	'Should ...............': function() {
+
+		function isBelowThreshold(currentValue) {
+  		return currentValue < 40;
+		}
+
+		let arr = [3, 78, 8, 4];
+		count = 0;
+		
+		every(arr, function() {
+			count++;
+		});
+		let result = arr.every(isBelowThreshold)
+    eq(result, false);
+	},
+
+	/*
 	'when passing an empty array, [] should return true by default': function() {
 		let arr = [];
 		myBool = true;
@@ -95,6 +123,6 @@ tests({
 			}
 		});
 		eq(myBool, true);
-	}
+	} */
 });
 </script>
