@@ -40,10 +40,22 @@ function every(arr, callback) {
 
 // Tests:
 tests({
-	'Should return false if array is NOT passed, passing string': function() {
+	'Should return -1 if array is NOT passed, tested with string': function() {
     eq(every("temp string"), -1);
 	},
-	'Should return false if array is NOT passed, passing object literal': function() {
+	'Should return -1 if array is NOT passed, tested with number': function() {
+    eq(every("2"), -1);
+	},
+	'Should return -1 if array is NOT passed, tested with decimal': function() {
+    eq(every(2.74), -1);
+	},
+	'Should return -1 if array is NOT passed, tested with negative decimal': function() {
+    eq(every(-7.35), -1);
+	},
+	'Should return -1 if array is NOT passed, tested with string': function() {
+    eq(every("temp string"), -1);
+	},
+	'Should return -1 if array is NOT passed, tested with object literal': function() {
 		let person = {
 			name: "John",
 			age: 21,
@@ -58,24 +70,6 @@ tests({
 		});
     eq(count, arr.length);
 	},
-
-	'Should ...............': function() {
-
-		function isBelowThreshold(currentValue) {
-  		return currentValue < 40;
-		}
-
-		let arr = [3, 78, 8, 4];
-		count = 0;
-		
-		every(arr, function() {
-			count++;
-		});
-		let result = arr.every(isBelowThreshold)
-    eq(result, false);
-	},
-
-	/*
 	'when passing an empty array, [] should return true by default': function() {
 		let arr = [];
 		myBool = true;
@@ -88,30 +82,33 @@ tests({
 		});
 		eq(myBool, true);
 	},
-	'when checking a function if every number in array are below 40, [1, 50, 4] should return false': function() {
-		let arr = [1, 50, 4];
-		myBool = true;
-		every(arr, function(val) {
-			for (let i=0; i<arr.length; i++) {
-				// check if number is NOT less than 40
-				if (!(arr[i] < 40))
-					myBool = false;
-			}
-		});
-		eq(myBool, false);
-	}, 
-	'when checking a function if every number in array are below 40, [70, 50, 4] should return false': function() {
-		let arr = [70, 50, 4];
-		myBool = true;
-		every(arr, function(val) {
-			for (let i=0; i<arr.length; i++) {
-				// check if number is NOT less than 40
-				if (!(arr[i] < 40))
-					myBool = false;
-			}
-		});
-		eq(myBool, false);
-	}, 
+	'Should return FALSE, when checking a function if every number in array are below 40, [3, 78, 12]': function() {
+		function isBelowThreshold(currentValue) {
+  		return currentValue < 40;
+		}
+		let arr = [3, 78, 12];
+		let result = arr.every(isBelowThreshold)
+    eq(result, false);
+	},
+	'Should return FALSE, when checking a function if every number in array are below 40, [3, 78, 89]': function() {
+		function isBelowThreshold(currentValue) {
+  		return currentValue < 40;
+		}
+		let arr = [3, 78, 89];
+		let result = arr.every(isBelowThreshold)
+    eq(result, false);
+	},
+	'Should return TRUE, when checking a function if every number in array are below 40, [30, 21, 4]': function() {
+		function isBelowThreshold(currentValue) {
+  		return currentValue < 40;
+		}
+		let arr = [30, 21, 4];
+		let result = arr.every(isBelowThreshold)
+    eq(result, true);
+	},
+
+	/*
+	
 	'when checking a function if every number in array are below 40, [30, 21, 4] should return true': function() {
 		let arr = [30, 21, 4];
 		myBool = true;
